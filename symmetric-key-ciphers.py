@@ -43,11 +43,25 @@ def ceaser_encrypt(shift, message):
 
     return keys_to_message(encrypted_keys)
 
+def affine_encrypt(a,b,message):
+    keys = message_to_keys(message)
+    encrypted_keys = []
+    for key in keys:
+        if key <= 25:
+            eKey = (a*key) + b
+            while (eKey > 25):
+                eKey = eKey - 26
+            encrypted_keys.append(eKey)
+        else:
+            encrypted_keys.append(key)
+
+    return keys_to_message(encrypted_keys)
 
 
 def main():
     print("hello world")
     print(ceaser_encrypt(9,"hello world"))
+    print(affine_encrypt(12,9,"hello world"))
     
 
 
